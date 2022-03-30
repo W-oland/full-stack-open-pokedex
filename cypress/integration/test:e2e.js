@@ -14,7 +14,7 @@ describe('Pokedex', function () {
 
   it('pokemon page can be navigated to', function(){
     cy.contains('ivysaur').click()
-    cy.contains('speed')
+    cy.contains('chlorophyll')
   })
 
 })
