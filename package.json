@@ -10,7 +10,8 @@
     "eslint": "eslint './**/*.{js,jsx}'",
     "build": "webpack --mode production",
     "cypress:open": "cypress open",
-    "putki": "git add --all && git commit -m 'tehtava' && git push origin master "
+    "putki": "git add --all && git commit -m 'tehtava' && git push origin master ",
+    "test:e2e": "npm start test:e2e"
   },
   "repository": {
     "type": "git",
