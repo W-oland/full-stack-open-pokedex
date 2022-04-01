@@ -35,3 +35,4 @@ jobs:
           heroku_email: "tatu.jarvenranta@gmail.com"
           healthcheck: "https://fullstack-pokemon-application.herokuapp.com/health"
           checkstring: "ok"
+          rollbackonhealthcheckfailed: true
