@@ -31,7 +31,7 @@ jobs:
           start: npm run start-prod
           wait-on: http://localhost:5000
       - name: deploy to heroku
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), "#skip") }}
         uses: akhileshns/heroku-deploy@v3.12.12
         with: 
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
@@ -40,3 +40,16 @@ jobs:
           healthcheck: "https://fullstack-pokemon-application.herokuapp.com/health"
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
+
+  tag_release:
+    needs: [simple_deployment_pipeline]
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Bump version and push tag
+        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), "#skip") }}
+        uses: anothrNick/github-tag-action@1.36.0
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
+          DRY_RUN: true
