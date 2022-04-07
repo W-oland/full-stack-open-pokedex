@@ -72,3 +72,4 @@ jobs:
           severity: error
           details: Deploy failure
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          
